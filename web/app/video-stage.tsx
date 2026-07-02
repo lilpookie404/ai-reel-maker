@@ -12,8 +12,10 @@ const soundVideo = demoVideos.find((video) => video.featured) ?? demoVideos[0];
 export function VideoStage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeVideo, setActiveVideo] = useState<DemoVideo>(soundVideo);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const handleWatchFilm = () => {
+    setHasStarted(true);
     void videoRef.current?.play().catch(() => undefined);
   };
 
@@ -30,21 +32,24 @@ export function VideoStage() {
             playsInline
             preload="metadata"
             aria-label={activeVideo.title}
+            onPlay={() => setHasStarted(true)}
           >
             <source src={activeVideo.src} type="video/mp4" />
           </video>
 
-          <button
-            className="absolute left-1/2 top-1/2 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-black px-5 py-3 text-sm font-black text-white shadow-[0_18px_48px_rgba(0,0,0,0.45)] transition hover:scale-[1.03] hover:bg-[#111] focus:outline-none focus:ring-4 focus:ring-white/20 sm:text-base"
-            type="button"
-            aria-label="Watch Film"
-            onClick={handleWatchFilm}
-          >
-            Watch Film
-            <span className="grid size-7 place-items-center rounded-full bg-white text-black">
-              <Play aria-hidden="true" fill="currentColor" size={14} />
-            </span>
-          </button>
+          {!hasStarted ? (
+            <button
+              className="absolute left-1/2 top-1/2 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-black px-5 py-3 text-sm font-black text-white shadow-[0_18px_48px_rgba(0,0,0,0.45)] transition hover:scale-[1.03] hover:bg-[#111] focus:outline-none focus:ring-4 focus:ring-white/20 sm:text-base"
+              type="button"
+              aria-label="Watch Film"
+              onClick={handleWatchFilm}
+            >
+              Watch Film
+              <span className="grid size-7 place-items-center rounded-full bg-white text-black">
+                <Play aria-hidden="true" fill="currentColor" size={14} />
+              </span>
+            </button>
+          ) : null}
         </div>
       </div>
 
@@ -67,7 +72,10 @@ export function VideoStage() {
                 type="button"
                 aria-label={`Show ${video.audio.toLowerCase()}`}
                 aria-pressed={isActive}
-                onClick={() => setActiveVideo(video)}
+                onClick={() => {
+                  setActiveVideo(video);
+                  setHasStarted(false);
+                }}
               >
                 {video.featured ? <Volume2 aria-hidden="true" size={15} /> : null}
                 {video.audio}
