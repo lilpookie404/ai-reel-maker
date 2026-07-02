@@ -23,10 +23,9 @@ outputs/
 
 # macOS
 .DS_Store
-.env
+
+# Environment files
 .env
 .env.*
+!.env.example
 *.env
-# build/outputs
-outputs/
-.env.example

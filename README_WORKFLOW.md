@@ -9,14 +9,7 @@
 
 2. **Run the workflow** (in another terminal):
    ```bash
-   # Windows
-   run_workflow.bat
-   
-   # Linux/Mac
-   ./run_workflow.sh
-   
-   # Or directly with Python
-   python run_workflow.py
+   python3 run_workflow.py
    ```
 
 3. **Enter your story idea** when prompted, or press Enter to use the default.
@@ -36,7 +29,9 @@ The script automatically:
 ## Requirements
 
 - API server running on `http://localhost:8000`
+- Optional: set `AI_REEL_API_URL` if your API server runs somewhere else
 - Python with `requests` library installed
 - All API dependencies installed
+- `REPLICATE_API_TOKEN` in `.env` for backend generation
 
 That's it! Simple and straightforward.
