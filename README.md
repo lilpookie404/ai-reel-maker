@@ -2,6 +2,8 @@
 
 A comprehensive FastAPI application for generating AI-powered video content using advanced AI models including Gemini 2.5 Flash, Minimax image-01, Flux Kontext, and ByteDance Seedance-1-pro.
 
+This repository also includes generated demo video assets for a future Vercel/Next.js frontend. The deployed frontend is intended to be a static showcase and will not generate new videos or require API tokens.
+
 ## 🚀 Features
 
 - **Storyboard Generation**: Create 60-second video scripts with 12 scenes
@@ -9,6 +11,7 @@ A comprehensive FastAPI application for generating AI-powered video content usin
 - **Setting Creation**: Generate setting prompts and images
 - **Scene Combination**: Combine characters and settings into cohesive scenes
 - **Video Generation**: Create high-quality videos from scenes
+- **Static Demo Assets**: Showcase generated reels from `web/public/videos/`
 
 ## 📋 Prerequisites
 
@@ -32,11 +35,18 @@ A comprehensive FastAPI application for generating AI-powered video content usin
    ```
 
 3. **Set up environment variables**
-   Create a `.env` file in the root directory:
+   Copy the example file and add your own Replicate token:
+
+   ```bash
+   cp .env.example .env
+   ```
 
    ```env
    REPLICATE_API_TOKEN=your_replicate_api_token_here
+   AI_REEL_API_URL=http://localhost:8000
    ```
+
+   `REPLICATE_API_TOKEN` is required only when running the backend generation pipeline locally.
 
 4. **Run the application**
 
@@ -62,13 +72,29 @@ You can run the end-to-end pipeline with a single script. It will:
 Run:
 
 ```bash
-python run_workflow.py
+python3 run_workflow.py
 ```
 
 Notes:
 
-- The script defaults to: "A professional parkour athlete navigates a city filled with unexpected obstacles."
+- The script defaults to: "A woman sits at her window watching a heavy rainstorm, finding peaceful joy in the cozy warmth of her dry indoor space."
+- It calls `http://localhost:8000` by default. Set `AI_REEL_API_URL` to use a different local API URL.
 - It does not call `/video-prompt`; instead it passes each scene's `description` directly to `/generate-video`.
+
+## 🎞️ Demo Videos
+
+The frontend demo assets live under:
+
+```text
+web/public/videos/
+```
+
+Current demo paths:
+
+- `web/public/videos/demo-1.mp4`
+- `web/public/videos/demo-2.mp4`
+
+In a Next.js app inside `web/`, these can be referenced as `/videos/demo-1.mp4` and `/videos/demo-2.mp4`.
 
 ## 🎬 API Workflow
 

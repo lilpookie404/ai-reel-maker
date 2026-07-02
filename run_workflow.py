@@ -3,15 +3,21 @@ Simple AI Reel Maker Workflow
 Run this script to generate a complete video from an idea.
 """
 
+import os
+
 import requests
 
-# API base URL
-API_URL = "http://localhost:8000"
+DEFAULT_API_URL = "http://localhost:8000"
+
+
+def get_api_url():
+    """Return the configured API base URL for the local workflow."""
+    return os.getenv("AI_REEL_API_URL", DEFAULT_API_URL).rstrip("/")
 
 
 def make_request(endpoint, data=None, max_retries=3):
     """Make a simple HTTP request to the API with retry logic."""
-    url = f"{API_URL}{endpoint}"
+    url = f"{get_api_url()}{endpoint}"
 
     for attempt in range(max_retries):
         try:
