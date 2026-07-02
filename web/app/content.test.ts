@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { brand, demoVideos, pipelineSteps } from "./content";
+import { brand, demoVideos, modelStack, pipelineFlow } from "./content";
 
 describe("Vidora content", () => {
   it("uses Vidora as the product brand", () => {
@@ -12,28 +12,39 @@ describe("Vidora content", () => {
     const mainVideo = demoVideos.find((video) => video.featured);
 
     expect(mainVideo?.src).toBe("/videos/demo-1.mp4");
-    expect(mainVideo?.audio).toBe("AI-added sound effects");
+    expect(mainVideo?.audio).toBe("Final mix");
   });
 
-  it("includes the no-audio demo as a secondary output", () => {
+  it("includes the raw cut as a secondary output", () => {
     expect(demoVideos).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           src: "/videos/demo-2.mp4",
-          audio: "No audio",
+          audio: "Raw cut",
         }),
       ]),
     );
   });
 
-  it("describes the full idea-to-video pipeline", () => {
-    expect(pipelineSteps.map((step) => step.title)).toEqual([
-      "Storyboard",
-      "Character",
-      "Setting",
-      "Scene continuity",
-      "Sound",
+  it("describes the real multi-model stack behind the generated videos", () => {
+    expect(modelStack.map((model) => model.name)).toEqual([
+      "Gemini 2.5 Flash",
+      "Minimax Image-01",
+      "FLUX Kontext Pro",
+      "Seedance 1 Pro",
+      "Sound FX",
       "Merge",
+    ]);
+  });
+
+  it("compresses the full idea-to-video flow into landing-page steps", () => {
+    expect(pipelineFlow.map((step) => step.title)).toEqual([
+      "Script",
+      "Images",
+      "Frames",
+      "Clips",
+      "Audio",
+      "Reel",
     ]);
   });
 });
