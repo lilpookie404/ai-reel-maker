@@ -20,6 +20,7 @@ venv/
 
 # Local outputs / artifacts
 outputs/
+.superpowers/
 
 # macOS
 .DS_Store

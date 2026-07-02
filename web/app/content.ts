@@ -34,19 +34,97 @@ export const pipelineSteps = [
   },
 ] as const;
 
+export const modelStack = [
+  {
+    name: "Gemini 2.5 Flash",
+    role: "Storyboards, captions, prompts",
+    mark: "G",
+    stage: "Script",
+    markStyle: "gemini",
+  },
+  {
+    name: "Minimax Image-01",
+    role: "Character and setting images",
+    mark: "M",
+    stage: "Images",
+    markStyle: "minimax",
+  },
+  {
+    name: "FLUX Kontext Pro",
+    role: "Cohesive character-setting frames",
+    mark: "F",
+    stage: "Frames",
+    markStyle: "flux",
+  },
+  {
+    name: "Seedance 1 Pro",
+    role: "5-second scene clips",
+    mark: "S",
+    stage: "Clips",
+    markStyle: "seedance",
+  },
+  {
+    name: "Sound FX",
+    role: "Atmosphere and audio texture",
+    mark: "FX",
+    stage: "Audio",
+    markStyle: "sound",
+  },
+  {
+    name: "Merge",
+    role: "Final reel assembly",
+    mark: "M+",
+    stage: "Reel",
+    markStyle: "merge",
+  },
+] as const;
+
+export const pipelineFlow = [
+  {
+    title: "Script",
+    model: "Gemini 2.5 Flash",
+    description: "Expands the story idea into scenes, captions, and generation prompts.",
+  },
+  {
+    title: "Images",
+    model: "Minimax Image-01",
+    description: "Creates character references and setting images for the reel world.",
+  },
+  {
+    title: "Frames",
+    model: "FLUX Kontext Pro",
+    description: "Combines character and setting images into cohesive shot frames.",
+  },
+  {
+    title: "Clips",
+    model: "Seedance 1 Pro",
+    description: "Generates short motion clips for each scene in the storyboard.",
+  },
+  {
+    title: "Audio",
+    model: "Sound FX",
+    description: "Adds atmosphere and audio polish to the generated reel.",
+  },
+  {
+    title: "Reel",
+    model: "Merge",
+    description: "Joins every generated clip into one shareable final output.",
+  },
+] as const;
+
 export const demoVideos = [
   {
     title: "Vidora in action",
-    subtitle: "Finished 60-second reel",
+    subtitle: "Sound-designed final reel",
     src: "/videos/demo-1.mp4",
-    audio: "AI-added sound effects",
+    audio: "Final mix",
     featured: true,
   },
   {
-    title: "Raw video output",
-    subtitle: "Generated reel before audio enhancement",
+    title: "Pre-sound-design cut",
+    subtitle: "Generated reel before audio polish",
     src: "/videos/demo-2.mp4",
-    audio: "No audio",
+    audio: "Raw cut",
     featured: false,
   },
 ] as const;
