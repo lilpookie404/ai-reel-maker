@@ -14,7 +14,21 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Vidora | AI Reel Demo",
-  description: "A polished static demo for turning ideas into vivid cinematic videos.",
+  description:
+    "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+  openGraph: {
+    title: "Vidora | AI Reel Demo",
+    description:
+      "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+    type: "website",
+    siteName: "Vidora",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vidora | AI Reel Demo",
+    description:
+      "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+  },
 };
 
 export default function RootLayout({

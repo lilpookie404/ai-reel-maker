@@ -1,4 +1,4 @@
-import { ArrowRight, Play, Sparkles, WandSparkles } from "lucide-react";
+import { ArrowRight, Mail, Play, Sparkles, WandSparkles } from "lucide-react";
 
 import { brand, metrics, modelStack, pipelineFlow, promptExample } from "./content";
 import { VideoStage } from "./video-stage";
@@ -236,9 +236,44 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 pb-10 text-sm text-white/42 sm:px-8">
-        <span>{brand.name} demo</span>
-        <span>Static demo. No backend calls or API tokens.</span>
+      <footer className="mt-8 bg-[#f7f5ee] px-5 py-8 text-[#101010] sm:px-8">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-6 border-t border-black/10 pt-7 text-center sm:grid-cols-3 sm:text-left">
+          <p className="font-mono text-sm font-semibold uppercase tracking-[0.12em] text-black/55">
+            © 2025 Vidora. All rights reserved.
+          </p>
+
+          <p className="font-mono text-sm font-semibold uppercase tracking-[0.12em] text-black/55 sm:text-center">
+            designed and built by vaishnavi &lt;3
+          </p>
+
+          <div className="flex items-center justify-center gap-5 sm:justify-end">
+            <a
+              className="grid size-10 place-items-center rounded-full text-sm font-black text-black/58 transition hover:bg-black/5 hover:text-black"
+              href="https://github.com/lilpookie404"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GH
+            </a>
+            <a
+              className="grid size-10 place-items-center rounded-full text-black/58 transition hover:bg-black/5 hover:text-black"
+              href="mailto:vaishnaviawadhiya2811@gmail.com"
+              aria-label="Email"
+            >
+              <Mail aria-hidden="true" size={20} />
+            </a>
+            <a
+              className="grid size-10 place-items-center rounded-full text-lg font-black text-black/58 transition hover:bg-black/5 hover:text-black"
+              href="https://www.linkedin.com/in/vaishnavi-awadhiya/"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              in
+            </a>
+          </div>
+        </div>
       </footer>
     </main>
   );
