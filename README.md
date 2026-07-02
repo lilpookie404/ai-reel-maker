@@ -2,7 +2,7 @@
 
 A comprehensive FastAPI application for generating AI-powered video content using advanced AI models including Gemini 2.5 Flash, Minimax image-01, Flux Kontext, and ByteDance Seedance-1-pro.
 
-This repository also includes generated demo video assets for a future Vercel/Next.js frontend. The deployed frontend is intended to be a static showcase and will not generate new videos or require API tokens.
+This repository also includes a Vercel-ready Next.js frontend under `web/`. The deployed frontend is a static showcase and does not generate new videos or require API tokens.
 
 ## 🚀 Features
 
@@ -91,10 +91,21 @@ web/public/videos/
 
 Current demo paths:
 
-- `web/public/videos/demo-1.mp4`
-- `web/public/videos/demo-2.mp4`
+- `web/public/videos/demo-1.mp4` — final mix
+- `web/public/videos/demo-2.mp4` — raw cut
 
 In a Next.js app inside `web/`, these can be referenced as `/videos/demo-1.mp4` and `/videos/demo-2.mp4`.
+
+## 🌐 Vercel Frontend Deployment
+
+Deploy the static Vidora frontend from the `web` directory:
+
+- Set the Vercel root directory to `web`.
+- No frontend environment variables are required.
+- The frontend does not call the FastAPI backend or use API tokens.
+- Keep the generated demo videos under `web/public/videos/` so they are served as `/videos/demo-1.mp4` and `/videos/demo-2.mp4`.
+
+Only local backend generation requires `REPLICATE_API_TOKEN`.
 
 ## 🎬 API Workflow
 

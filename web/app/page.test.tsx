@@ -73,4 +73,25 @@ describe("Vidora homepage", () => {
     expect(screen.getAllByText("Audio").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Reel").length).toBeGreaterThan(0);
   });
+
+  it("renders the portfolio footer with contact links", () => {
+    render(<Page />);
+
+    expect(screen.getByText("© 2025 Vidora. All rights reserved.")).toBeInTheDocument();
+    expect(screen.getByText("designed and built by vaishnavi <3")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
+      "href",
+      "https://github.com/lilpookie404",
+    );
+    expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
+      "href",
+      "mailto:vaishnaviawadhiya2811@gmail.com",
+    );
+    expect(screen.getByRole("link", { name: /linkedin/i })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/vaishnavi-awadhiya/",
+    );
+    expect(screen.queryByRole("link", { name: /twitter/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /^x$/i })).not.toBeInTheDocument();
+  });
 });
