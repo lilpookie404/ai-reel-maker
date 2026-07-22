@@ -1,50 +1,74 @@
 import { describe, expect, it } from "vitest";
 
-import { brand, demoVideos, modelStack, pipelineFlow } from "./content";
+import { brand, demoVideos, endpoints, workflowStages } from "./content";
 
 describe("Vidora content", () => {
-  it("uses Vidora as the product brand", () => {
+  it("makes the project personal and specific", () => {
     expect(brand.name).toBe("Vidora");
-    expect(brand.tagline).toBe("Turn ideas into vivid cinematic videos.");
+    expect(brand.creator).toBe("Vaishnavi Awadhiya");
+    expect(brand.tagline).toMatch(/modular ai reel maker/i);
+    expect(brand.sourceIdea).toMatch(/girl coding in her room/i);
+    expect(brand.note).toMatch(/i built vidora/i);
   });
 
-  it("marks the sound-enhanced video as the main in-action demo", () => {
+  it("uses the dusky room reel as the featured output", () => {
     const mainVideo = demoVideos.find((video) => video.featured);
 
+    expect(mainVideo?.title).toBe("Dusky room");
     expect(mainVideo?.src).toBe("/videos/demo-1.mp4");
-    expect(mainVideo?.audio).toBe("Final mix");
+    expect(mainVideo?.poster).toBe("/frames/dusk-room-01.jpg");
+    expect(mainVideo?.audio).toBe("Ambient sound");
+    expect(mainVideo?.brief).toMatch(/dusky outside/i);
   });
 
-  it("includes the raw cut as a secondary output", () => {
+  it("keeps the earlier reel as a separate orchestration run", () => {
     expect(demoVideos).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
+          title: "Street scene",
           src: "/videos/demo-2.mp4",
-          audio: "Raw cut",
+          poster: "/frames/street-scene.jpg",
+          audio: "Visual study",
         }),
       ]),
     );
   });
 
-  it("describes the real multi-model stack behind the generated videos", () => {
-    expect(modelStack.map((model) => model.name)).toEqual([
+  it("describes the real seven-stage pipeline from the original build", () => {
+    expect(workflowStages.map((stage) => stage.id)).toEqual([
+      "storyboard",
+      "character",
+      "setting",
+      "composition",
+      "motion",
+      "sequence",
+      "atmosphere",
+    ]);
+    expect(workflowStages.map((stage) => stage.tool)).toEqual([
       "Gemini 2.5 Flash",
       "Minimax Image-01",
-      "FLUX Kontext Pro",
-      "Seedance 1 Pro",
-      "Sound FX",
-      "Merge",
+      "Minimax Image-01",
+      "FLUX Kontext Apps Multi-Image-Pro",
+      "Seedance-1-Pro",
+      "MoviePy",
+      "Minimax Audio + MoviePy",
     ]);
+    expect(workflowStages.every((stage) => stage.logoSrc.startsWith("/logos/"))).toBe(true);
+    expect(workflowStages.every((stage) => stage.endpoint.startsWith("/"))).toBe(true);
+    expect(workflowStages.every((stage) => stage.input && stage.output)).toBe(true);
   });
 
-  it("compresses the full idea-to-video flow into landing-page steps", () => {
-    expect(pipelineFlow.map((step) => step.title)).toEqual([
-      "Script",
-      "Images",
-      "Frames",
-      "Clips",
-      "Audio",
-      "Reel",
+  it("lists every FastAPI route shown in the project walkthrough", () => {
+    expect(endpoints).toEqual([
+      "/storyboard",
+      "/character-prompt",
+      "/character-image",
+      "/setting-prompt",
+      "/setting-image",
+      "/combine-image",
+      "/generate-video",
+      "/merge-video",
+      "/add-sound-effect",
     ]);
   });
 });
