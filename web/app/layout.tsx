@@ -1,33 +1,39 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Vidora | AI Reel Demo",
+  title: "Vidora | AI Reel Maker by Vaishnavi Awadhiya",
   description:
-    "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+    "Explore how Vaishnavi Awadhiya built Vidora, a modular AI pipeline that turns one scene idea into a complete reel.",
   openGraph: {
-    title: "Vidora | AI Reel Demo",
+    title: "Vidora | AI Reel Maker by Vaishnavi Awadhiya",
     description:
-      "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+      "Explore how Vaishnavi Awadhiya built Vidora, a modular AI pipeline that turns one scene idea into a complete reel.",
     type: "website",
     siteName: "Vidora",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vidora | AI Reel Demo",
+    title: "Vidora | AI Reel Maker by Vaishnavi Awadhiya",
     description:
-      "A static AI reel pipeline showcase with generated demo videos, model flow, and Vidora project proof.",
+      "Explore how Vaishnavi Awadhiya built Vidora, a modular AI pipeline that turns one scene idea into a complete reel.",
   },
 };
 
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${bricolageGrotesque.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
